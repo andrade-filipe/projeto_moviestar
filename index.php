@@ -50,17 +50,17 @@
             <ul>
                 <li>
                     <a href="#">
-                        <i class="fas fa-facebook-square"></i>
+                        <i class="fab fa-facebook-square"></i>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fas fa-instagram"></i>
+                        <i class="fab fa-instagram"></i>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fas fa-youtube"></i>
+                        <i class="fab fa-youtube"></i>
                     </a>
                 </li>
             </ul>
