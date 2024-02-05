@@ -1,5 +1,6 @@
 <?php
-    require_once("globals.php");
+    include_once("globals.php");
+    include_once("db.php");
 ?>
 
 <!DOCTYPE html>
