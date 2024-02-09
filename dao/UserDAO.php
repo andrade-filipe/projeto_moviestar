@@ -27,6 +27,16 @@
 
         public function create(User $user, $authUser = false){
 
+            $stmt = $this -> connection -> prepare("INSERT INTO users (name, lastname, email, password, token) " .
+             "VALUES (:name, :lastname, :email, :password, :token)");
+
+            $stmt -> bindParam(":name", $user -> name);
+            $stmt -> bindParam(":lastname", $user -> lastName);
+            $stmt -> bindParam(":password", $user -> password);
+            $stmt -> bindParam(":email", $user -> email);
+            $stmt -> bindParam(":token", $user -> token);
+
+            $stmt -> execute();
         }
 
         public function update(User $user){
