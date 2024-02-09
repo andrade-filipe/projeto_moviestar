@@ -19,7 +19,7 @@
 </head>
 <body>
     <header>
-        <nav id="main-nav-bar" class="navbar navbar-expand-lg">
+        <nav id="main-navbar" class="navbar navbar-expand-lg">
             <a href="<?= $BASE_URL ?>" class="navbar-brand">
                 <img src="<?= $BASE_URL ?>img/logo.svg" alt="" id="logo">
                 <span id="moviestar-title">MovieStar</span>
@@ -27,8 +27,9 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
-            <form action="" method="GET" id="search-form" class="form-inline my-2 my-lg-0">
-                <input type="text" name="q" id="search" class="form-control mr-sm-2" type="search" placeholder="Buscar Filmes" aria-label="Search">
+            <form action="" method="GET" id="search-form" class="inline-icon my-2 my-lg-0">
+                <input type="text" name="q" id="search" class="form-control mr-sm-2"
+                style="display: none;" type="search" placeholder="Buscar Filmes" aria-label="Search">
                 <button class="btn my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
@@ -46,8 +47,8 @@
         <h1>body</h1>
     </div>
     <footer id="footer">
-        <div class="social-container">
-            <ul>
+        <div id="social-container">
+            <ul id="footer-links-container">
                 <li>
                     <a href="#">
                         <i class="fab fa-facebook-square"></i>

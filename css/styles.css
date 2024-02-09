@@ -26,12 +26,19 @@
   border-radius: 5px;
   width: 50%;
   margin-left: 180px;
+
+  display: inline-block;
 }
 
 #search-form .form-control {
   border: none;
   width: 90%;
   box-shadow: none;
+}
+
+.inline-icon{
+    position: relative;
+    display: inline-block;
 }
 
 #navbar {
@@ -439,7 +446,7 @@
 
 #social-container ul,
 #footer-links-container ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
 }
 
