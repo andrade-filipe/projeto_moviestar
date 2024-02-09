@@ -1,8 +1,15 @@
 <?php
     include_once("globals.php");
     include_once("db.php");
+    include_once("models/Message.php");
 
-    $flassMessage = [];
+    $message = new Message($BASE_URL);
+
+    $flassMessage = $message -> getMessage();
+
+    if(!empty($flassMessage["msg"])){
+        $message -> clearMessage();
+    }
 ?>
 
 <!DOCTYPE html>
