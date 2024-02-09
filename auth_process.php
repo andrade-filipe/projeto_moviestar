@@ -52,6 +52,25 @@
         }
 
     }else if ($type === "login"){
+        $email = filter_input(INPUT_POST, "email");
+        $password = filter_input(INPUT_POST, "password");
 
+        if($userDao -> authenticateUser($email, $password)) {
+
+            $token = $user -> generateToken();
+
+            $this -> setTokenToSession($token);
+
+            $user -> token = $token;
+
+            $this -> update($user);
+
+            return true;
+
+        } else {
+            $message -> setMessage("Email e/ou senha Incorretos", "error", "back");
+        }
+    } else {
+        $message -> setMessage("informações inválidas", "error", "index.php");
     }
 ?>

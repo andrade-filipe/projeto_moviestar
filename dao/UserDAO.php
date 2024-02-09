@@ -79,6 +79,21 @@
 
         public function authenticateUser($email, $password){
 
+            $user = $this -> findByEmail($email);
+
+            if($user){
+
+                if(password_verify($password, $user -> password)){
+
+                    
+
+                } else {
+                    return false;
+                }
+
+            } else {
+                return false;
+            }
         }
 
         public function destroyToken(){
