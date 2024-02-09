@@ -52,6 +52,20 @@
 
         public function verifyToken($protected = false){
 
+            if(!empty($_SESSION["token"])){
+
+                $token = $_SESSION["token"];
+
+                $user = $this -> findByToken($token);
+
+                if($user) {
+                    return $user;
+                } else if($protected) {
+                    $this -> message -> setMessage("Faça a autenticação para acessar", "error", "index.php");
+                }
+            } else if($protected) {
+                $this -> message -> setMessage("Faça a autenticação para acessar", "error", "index.php");
+            }
         }
 
         public function setTokenToSession($token, $redirect = true){
@@ -65,6 +79,12 @@
 
         public function authenticateUser($email, $password){
 
+        }
+
+        public function destroyToken(){
+            $_SESSION["token"] = "";
+
+            $this -> message -> setMessage("Logged Out", "success", "index.php");
         }
 
         public function findByEmail($email){
@@ -96,7 +116,26 @@
         }
 
         public function findByToken($token){
+            if($token != ""){
+                $stmt = $this -> connection -> prepare("SELECT * FROM users WHERE token = :token");
 
+                $stmt -> bindParam(":token", $token);
+
+                $stmt -> execute();
+
+                if($stmt -> rowCount() > 0){
+
+                    $data = $stmt -> fetch();
+                    $user = $this -> buildUser($data);
+
+                    return $user;
+
+                }else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
         }
 
         public function changePassword(User $user){
