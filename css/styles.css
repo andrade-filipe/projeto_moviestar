@@ -26,7 +26,6 @@
   border-radius: 5px;
   width: 50%;
   margin-left: 180px;
-
   display: inline-block;
 }
 
@@ -34,11 +33,6 @@
   border: none;
   width: 90%;
   box-shadow: none;
-}
-
-.inline-icon{
-    position: relative;
-    display: inline-block;
 }
 
 #navbar {
