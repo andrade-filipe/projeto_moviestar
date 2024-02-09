@@ -1,6 +1,8 @@
 <?php
     include_once("globals.php");
     include_once("db.php");
+
+    $flassMessage = [];
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MovieStar</title>
-    <link rel="short icon" href="<?= $BASE_URL ?>img/moviestar.ico">
+    <link rel="short icon" href="<?= $BASE_URL ?>/img/moviestar.ico">
     <!-- CSS -->
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/styles.css">
     <!-- BOOTSTRAP -->
@@ -43,3 +45,8 @@
             </div>
         </nav>
     </header>
+    <?php if(!empty($flassMessage["msg"])): ?>
+        <div class="msg-container">
+            <p class="msg <?= $flassMessage["type"] ?>"><?= $flassMessage["msg"] ?></p>
+        </div>
+    <?php endif; ?>

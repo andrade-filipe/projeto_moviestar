@@ -185,6 +185,10 @@
   margin: 30px auto;
 }
 
+.form-group{
+    margin-bottom: 1rem;
+}
+
 .card-btn {
   color: #000;
   background-color: #F5C518;
