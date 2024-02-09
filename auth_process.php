@@ -24,7 +24,10 @@
 
                 if($userDao -> findByEmail($email) === false){
 
-                    
+                    $user = new User();
+
+                    $userToken = $user -> generateToken();
+                    $finalPassword = $user -> generatePassword($password);
 
                 } else {
                     $message -> setMessage("Usuário Já Cadastrado", "error", "back");
