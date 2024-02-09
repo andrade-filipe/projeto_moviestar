@@ -29,6 +29,16 @@
                     $userToken = $user -> generateToken();
                     $finalPassword = $user -> generatePassword($password);
 
+                    $user -> name = $name;
+                    $user -> lastName = $lastName;
+                    $user -> email = $email;
+                    $user -> password = $finalPassword;
+                    $user -> token = $userToken;
+
+                    $auth = true;
+
+                    $userDao -> create($user, $auth);
+
                 } else {
                     $message -> setMessage("Usuário Já Cadastrado", "error", "back");
                 }

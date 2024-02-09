@@ -3,7 +3,8 @@
 
         public $id;
         public $name;
-        public $lastname;
+        public $lastName;
+        public $email;
         public $password;
         public $image;
         public $bio;
