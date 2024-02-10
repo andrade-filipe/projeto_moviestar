@@ -57,15 +57,7 @@
 
         if($userDao -> authenticateUser($email, $password)) {
 
-            $token = $user -> generateToken();
-
-            $this -> setTokenToSession($token);
-
-            $user -> token = $token;
-
-            $this -> update($user);
-
-            return true;
+            $message -> setMessage("Bem-Vindo!", "success", "edit_profile.php");
 
         } else {
             $message -> setMessage("Email e/ou senha Incorretos", "error", "back");
