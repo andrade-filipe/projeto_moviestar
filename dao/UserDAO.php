@@ -4,13 +4,11 @@
 
     class UserDAO implements UserDAOInterface{
         private $connection;
-        private $url;
         private $message;
 
-        public function __construct(PDO $connection, $url){
+        public function __construct(PDO $connection){
             $this -> connection = $connection;
-            $this -> url = $url;
-            $this -> message = new Message($url);
+            $this -> message = new Message();
         }
 
         public function buildUser($data){
@@ -68,7 +66,7 @@
             $stmt -> execute();
 
             if($redirect){
-                $this -> message -> setMessage("Dados atualizados com sucesso", "success", "edit_profile.php");
+                $this -> message -> setMessage("Dados atualizados com sucesso", "success");
             }
         }
 
@@ -83,10 +81,10 @@
                 if($user) {
                     return $user;
                 } else if($protected) {
-                    $this -> message -> setMessage("Faça a autenticação para acessar", "error", "index.php");
+                    $this -> message -> setMessage("Faça a autenticação para acessar", "error");
                 }
             } else if($protected) {
-                $this -> message -> setMessage("Faça a autenticação para acessar", "error", "index.php");
+                $this -> message -> setMessage("Faça a autenticação para acessar", "error");
             }
         }
 
@@ -95,7 +93,7 @@
             $_SESSION["token"] = $token;
 
             if($redirect){
-                $this -> message -> setMessage("Bem-Vindo!", "success", "edit_profile.php");
+                $this -> message -> setMessage("Bem-Vindo!", "success");
             }
         }
 
@@ -128,7 +126,7 @@
         public function destroyToken(){
             $_SESSION["token"] = "";
 
-            $this -> message -> setMessage("Logged Out", "success", "index.php");
+            $this -> message -> setMessage("Logged Out", "success");
         }
 
         public function findByEmail($email){
