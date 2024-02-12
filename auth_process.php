@@ -5,9 +5,9 @@
     include_once("models/Message.php");
     include_once("dao/UserDAO.php");
 
-    $message = new Message($BASE_URL);
+    $message = new Message();
 
-    $userDao = new UserDAO($db_connection, $BASE_URL);
+    $userDao = new UserDAO($db_connection);
 
     $type = filter_input(INPUT_POST, "type");
 
@@ -40,15 +40,15 @@
                     $userDao -> create($user, $auth);
 
                 } else {
-                    $message -> setMessage("Usuário Já Cadastrado", "error", "back");
+                    $message -> setMessage("Usuário Já Cadastrado", "error");
                 }
 
             } else {
-                $message -> setMessage("Senhas Diferentes", "error", "back");
+                $message -> setMessage("Senhas Diferentes", "error");
             }
 
         }else {
-            $message -> setMessage("Por Favor, Preencher todos os campos", "error", "back");
+            $message -> setMessage("Por Favor, Preencher todos os campos", "error");
         }
 
     }else if ($type === "login"){
@@ -57,12 +57,12 @@
 
         if($userDao -> authenticateUser($email, $password)) {
 
-            $message -> setMessage("Bem-Vindo!", "success", "edit_profile.php");
+            $message -> setMessage("Bem-Vindo!", "success");
 
         } else {
-            $message -> setMessage("Email e/ou senha Incorretos", "error", "back");
+            $message -> setMessage("Email e/ou senha Incorretos", "error");
         }
     } else {
-        $message -> setMessage("informações inválidas", "error", "index.php");
+        $message -> setMessage("informações inválidas", "error");
     }
 ?>

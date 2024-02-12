@@ -124,9 +124,6 @@
         }
 
         public function destroyToken(){
-            $_SESSION["token"] = "";
-
-            $this -> message -> setMessage("Logged Out", "success");
         }
 
         public function findByEmail($email){
