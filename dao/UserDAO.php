@@ -41,6 +41,8 @@
 
             if($authUser) {
                 $this -> setTokenToSession($user -> token);
+                header("Location: " . "/edit_profile.php");
+                exit;
             }
         }
 

@@ -59,6 +59,9 @@
 
             $message -> setMessage("Bem-Vindo!", "success");
 
+            header("Location: " . "/edit_profile.php");
+            exit;
+
         } else {
             $message -> setMessage("Email e/ou senha Incorretos", "error");
         }
