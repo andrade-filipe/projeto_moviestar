@@ -3,7 +3,7 @@
     include_once("models/User.php");
     include_once("dao/UserDAO.php");
 
-    $userDao = new UserDao($db_connection, $BASE_URL);
+    $userDao = new UserDao($db_connection);
 
     $userData = $userDao -> verifyToken(true);
 ?>

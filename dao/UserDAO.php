@@ -123,9 +123,6 @@
             }
         }
 
-        public function destroyToken(){
-        }
-
         public function findByEmail($email){
 
             if($email != ""){

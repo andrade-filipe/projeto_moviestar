@@ -4,8 +4,6 @@
     if($userDao){
         $_SESSION["token"] = "";
 
-        $this -> message -> setMessage("Logged Out", "success");
-
         // Destrua a sessão completamente
         session_unset();
         session_destroy();
@@ -17,4 +15,5 @@
         header("Location: " . "../../index.php");
         exit;
     }
+
 ?>
