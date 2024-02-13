@@ -54,7 +54,24 @@
         }
 
        $userDao->update($userData);
-    } else if($type == "changepassword") {
+    } else if($type == "changePassword") {
+
+        $password = filter_input(INPUT_POST, "password");
+        $confirmPassword = filter_input(INPUT_POST, "confirmPassword");
+        $id = filter_input(INPUT_POST, "id");
+
+        if($password == $confirmPassword){
+            $user = new User();
+
+            $finalPassword = $user -> generatePassword($password);
+
+            $user -> password = $finalPassword;
+            $user -> id = $id;
+
+            $userDao -> changePassword($user);
+        } else {
+            $message -> setMessage("Senhas não coincidem", "error");
+        }
 
     } else {
         header("Location: " . "index.php");

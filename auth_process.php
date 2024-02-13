@@ -59,7 +59,7 @@
 
             $message -> setMessage("Bem-Vindo!", "success");
 
-            header("Location: " . "/edit_profile.php");
+            header("Location: " . "edit_profile.php");
             exit;
 
         } else {

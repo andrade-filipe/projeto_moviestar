@@ -52,6 +52,7 @@
                 <p class="page-description">Digite a nova senha:</p>
                 <form action="user_process.php" method="POST">
                     <input type="hidden" name="type" value="changePassword">
+                    <input type="hidden" name="id" value="<?= $userData -> id ?>">
                     <div class="form-group">
                         <input type="password" class="form-control" id="password" name="password" placeholder="Nova Senha">
                     </div>

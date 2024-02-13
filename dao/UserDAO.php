@@ -180,6 +180,13 @@
         }
 
         public function changePassword(User $user){
+            $stmt = $this -> connection -> prepare("UPDATE users SET password = :password WHERE id = :id");
 
+            $stmt -> bindParam(":password", $user -> password);
+            $stmt -> bindParam(":id" , $user -> id);
+
+            $stmt -> execute();
+
+            $this -> message -> setMessage("Senha Alterada", "success");
         }
     }
