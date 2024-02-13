@@ -58,7 +58,9 @@
 
         $password = filter_input(INPUT_POST, "password");
         $confirmPassword = filter_input(INPUT_POST, "confirmPassword");
-        $id = filter_input(INPUT_POST, "id");
+
+        $userData = $userDao -> verifyToken();
+        $id = $userData -> id;
 
         if($password == $confirmPassword){
             $user = new User();
