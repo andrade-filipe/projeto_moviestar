@@ -37,4 +37,3 @@
         public function findByToken($token);
         public function changePassword(User $user);
     }
-?>
