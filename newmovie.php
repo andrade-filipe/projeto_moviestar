@@ -24,7 +24,7 @@
                 <input type="file" class="form-control-file" name="image" id="image">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="lenght" name="lenght" placeholder="Duração do Filme">
+                <input type="text" class="form-control" id="length" name="length" placeholder="Duração do Filme">
             </div>
             <div class="form-group">
                 <select name="category" id="category" class="form-control">
