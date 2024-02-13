@@ -7,6 +7,7 @@
 
     $message = new Message();
 
+    $user = new User();
     $userDao = new UserDAO($db_connection);
 
     $type = filter_input(INPUT_POST, "type");
@@ -24,6 +25,33 @@
        $userData -> lastName = $lastname;
        $userData  -> bio = $bio;
        $userData  -> email = $email;
+
+        if(isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])){
+            $image = $_FILES["image"];
+            $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
+            $jpgArray = ["image/jpeg", "image/jpg"];
+
+            if(in_array($image["type"], $imageTypes)){
+
+                if(in_array($image["type"], $jpgArray)){
+
+                    $imageFile = imagecreatefromjpeg($image["tmp_name"]);
+
+                } else {
+
+                    $imageFile = imagecreatefrompng($image["tmp_name"]);
+
+                }
+                $imageName = $user -> imageGenerateName();
+
+                imagejpeg($imageFile, "img/users/" . $imageName, 100);
+
+                $userData -> image = $imageName;
+
+            } else {
+                $message -> setMessage("Tipo inválido de Imagem", "error");
+            }
+        }
 
        $userDao->update($userData);
     } else if($type == "changepassword") {
