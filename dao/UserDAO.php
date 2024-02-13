@@ -46,30 +46,33 @@
             }
         }
 
-        public function update(User $user, $redirect = true){
+        public function update(User $user){
+            try{
+                $stmt = $this -> connection -> prepare("UPDATE users SET " .
+                "name = :name,
+                lastname = :lastname,
+                email = :email,
+                image = :image,
+                bio = :bio,
+                token = :token " .
+                "WHERE id = :id");
 
-            $stmt = $this -> connection -> prepare("UPDATE users SET " .
-            "name = :name,
-            lastname = :lastname,
-            email = :email,
-            image = :image,
-            bio = :bio,
-            token = :token " .
-            "WHERE id = :id");
+                $stmt -> bindParam(":name", $user -> name);
+                $stmt -> bindParam(":lastname", $user -> lastName);
+                $stmt -> bindParam(":email", $user -> email);
+                $stmt -> bindParam(":image", $user -> image);
+                $stmt -> bindParam(":bio", $user -> bio);
+                $stmt -> bindParam(":token", $user -> token);
+                $stmt -> bindParam(":id", $user -> id);
 
-            $stmt -> bindParam(":name", $user -> name);
-            $stmt -> bindParam(":lastname", $user -> lastName);
-            $stmt -> bindParam(":email", $user -> email);
-            $stmt -> bindParam(":image", $user -> image);
-            $stmt -> bindParam(":bio", $user -> bio);
-            $stmt -> bindParam(":token", $user -> token);
-            $stmt -> bindParam(":id", $user -> id);
+                $stmt -> execute();
 
-            $stmt -> execute();
-
-            if($redirect){
                 $this -> message -> setMessage("Dados atualizados com sucesso", "success");
+            }catch (PDOException $e){
+                $this -> message -> setMessage("Dados não foram atualizados", "error");
             }
+
+
         }
 
         public function verifyToken($protected = false){

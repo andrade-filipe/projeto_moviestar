@@ -42,7 +42,7 @@
                         <input type="file" class="form-control-file" name="image" >
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" id="bio" name="bio" placeholder="Conte-nos sobre você"><?= $userData -> bio ?></textarea>
+                        <textarea class="form-control" id="bio" name="bio" placeholder="Conte-nos sobre você" rows="5"><?= $userData -> bio ?></textarea>
                     </div>
                 </div>
             </div>
