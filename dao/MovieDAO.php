@@ -31,7 +31,21 @@
         }
 
         public function getLatestMovies(){
+            $movies = [];
 
+            $stmt = $this -> connection -> prepare("SELECT * FROM movies ORDER BY id DESC");
+
+            $stmt -> execute();
+
+            if($stmt -> rowCount() > 0){
+                $moviesArray = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+                foreach($moviesArray as $movie){
+                    $movies[] = $this -> buildMovie($movie);
+                }
+            }
+
+            return $movies;
         }
 
         public function getMoviesByCategory($category){

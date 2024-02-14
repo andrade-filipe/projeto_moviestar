@@ -4,6 +4,8 @@
     include_once("models/Message.php");
     include_once("dao/UserDAO.php");
 
+    $connection = $db_connection;
+
     $message = new Message();
 
     $flassMessage = $message -> getMessage();
