@@ -359,7 +359,7 @@
   }
 
   #movies-dashboard .table {
-    color: #FFF;
+    color: #FFF
   }
 
   #movies-dashboard .table th {
@@ -371,7 +371,7 @@
   }
 
   .table-movie-title {
-    color: #FFF;
+    color: #000;
     font-weight: bold;
     transition: .5s;
   }
