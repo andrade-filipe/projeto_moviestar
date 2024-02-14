@@ -49,7 +49,23 @@
         }
 
         public function getMoviesByCategory($category){
+            $movies = [];
 
+            $stmt = $this -> connection -> prepare("SELECT * FROM movies WHERE category = :category ORDER BY id DESC ");
+
+            $stmt -> bindParam(":category", $category);
+
+            $stmt -> execute();
+
+            if($stmt -> rowCount() > 0){
+                $moviesArray = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+                foreach($moviesArray as $movie){
+                    $movies[] = $this -> buildMovie($movie);
+                }
+            }
+
+            return $movies;
         }
 
         public function getMoviesByUserId($id){
