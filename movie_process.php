@@ -58,13 +58,32 @@
                 $message -> setMessage("Filme Adicionado com sucesso", "success");
                 header("Location: " . "index.php");
             } catch (PDOException $e){
-                throw $e;
                 $message -> setMessage("Filme Não foi adicionado", "error");
+                throw $e;
             }
-
-
         } else {
             $message->setMessage("Adicione pelomenos Título, Descrição e Categoria", "error");
+        }
+    }else if($type === "delete"){
+        $id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
+
+        $movie = $movieDao -> findById($id);
+
+        if($movie){
+            if($movie -> users_id === $userData -> id){
+                try{
+                    $movieDao -> destroy($movie -> id);
+                    $message -> setMessage("Filme Deletado","success");
+                } catch (PDOException $e){
+                    $message -> setMessage("Algo deu Errado","error");
+                    throw $e;
+                }
+            } else {
+                $message->setMessage("Algo deu Errado", "error");
+                header("Location: " . "index.php");
+            }
+        } else {
+            $message->setMessage("Filme Não encontrado", "error");
         }
     } else {
         header("Location: " . "index.php");

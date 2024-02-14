@@ -30,6 +30,8 @@ if($movie -> image == ""){
     $movie->image = "movie_cover.jpg";
 }
 
+$alreadyReviewed = false;
+
 ?>
 
 <div id="main-container" class="container-fluid">
@@ -51,7 +53,7 @@ if($movie -> image == ""){
         </div>
         <div class="offset-md-1 col-md-10" id="reviews-container">
             <h3 class="reviews-title">Avaliações</h3>
-
+            <?php if(!empty($userData) && !$userOwnsMovie && !$alreadyReviewed): ?>
             <div class="col-md-12" id="review-form-container">
                 <h4>Envie sua Avaliação</h4>
                 <p class="page-description">Dê sua nota e comentário</p>
@@ -79,7 +81,7 @@ if($movie -> image == ""){
                     <input type="submit" class="btn card-btn" value="Enviar Comentário">
                 </form>
             </div>
-
+            <?php endif; ?>
             <div class="col-md-12 review">
                 <div class="row">
                     <div class="col-md-1">

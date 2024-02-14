@@ -129,6 +129,10 @@
         }
 
         public function destroy($id){
+            $stmt = $this -> connection -> prepare("DELETE FROM movies WHERE id = :id");
 
+            $stmt -> bindParam(":id", $id);
+
+            $stmt -> execute();
         }
     }
