@@ -26,6 +26,8 @@ if (!empty($userData)) {
     if ($userData->id === $movie->users_id) {
         $userOwnsMovie = true;
     }
+
+    $alreadyReviewed = $reviewDao -> hasAlreadyReviewed($id, $userData -> id);
 }
 
 if($movie -> image == ""){
@@ -33,8 +35,6 @@ if($movie -> image == ""){
 }
 
 $movieReviews = $reviewDao -> getMoviesReview($id);
-
-$alreadyReviewed = false;
 
 ?>
 
@@ -94,7 +94,7 @@ $alreadyReviewed = false;
             <?php if(count($movieReviews) == 0): ?>
                 <p class="empty-list">Não Há Comentários</p>
             <?php endif; ?>
-            
+
         </div>
     </div>
 </div>
