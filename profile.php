@@ -15,18 +15,17 @@
         if(!empty($userData)){
             $id = $userData -> id;
         } else {
-            $message -> setMessage("Usuário não encontrado", "error");
+            $message -> setMessage("Usuário não encontrado 1", "error");
             header("Location: " . "index.php");
         }
     } else {
         $userData = $userDao -> findById($id);
 
         if(!$userData) {
-            $message -> setMessage("Usuário não encontrado","error");
+            $message -> setMessage("Usuário não encontrado 3", "error");
+            header("Location: " . "index.php");
         }
 
-        $message -> setMessage("Usuário não encontrado", "error");
-        header("Location: " . "index.php");
     }
 
     if($userData -> image == ""){
