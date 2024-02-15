@@ -85,6 +85,25 @@
 
         }
         public function getRatings($id){
+            $stmt = $this -> connection->prepare("SELECT * FROM reviews WHERE movies_id = :movies_id");
 
+            $stmt -> bindParam(":movies_id", $id);
+            $stmt->execute();
+
+            if($stmt -> rowCount() > 0){
+                $rating = 0;
+
+                $reviews = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+                foreach($reviews as $review) {
+                    $rating += $review["rating"];
+                }
+
+                $rating = $rating / count($reviews);
+            } else {
+                $rating = "Não avaliado";
+            }
+
+            return $rating;
         }
     }

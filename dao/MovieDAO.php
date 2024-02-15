@@ -1,6 +1,7 @@
 <?php
 include_once("models/Movie.php");
 include_once("models/Message.php");
+include_once("dao/ReviewDAO.php");
 
 class MovieDAO implements MovieDAOInterface
 {
@@ -25,6 +26,12 @@ class MovieDAO implements MovieDAOInterface
         $movie->category = $data["category"];
         $movie->length = $data["length"];
         $movie->users_id = $data["users_id"];
+
+        $reviewDao = new ReviewDAO($this -> connection);
+
+        $rating = $reviewDao -> getRatings($movie->id);
+
+        $movie -> rating = $rating;
 
         return $movie;
     }
