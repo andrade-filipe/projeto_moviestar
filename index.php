@@ -10,6 +10,7 @@
     $comedyMovies = $movieDao -> getMoviesByCategory("Comédia");
 ?>
 <div id="main-container" class="container-fluid">
+
     <h2 class="section-title">Filmes Novos</h2>
     <p class="section-description">Veja as Criticas</p>
     <div class="movies-container">
@@ -20,6 +21,7 @@
             <p class="empty-list">Não há filmes cadastrados</p>
         <?php endif; ?>
     </div>
+
     <h2 class="section-title">Ação</h2>
     <p class="section-description">Veja os de Ação</p>
     <div class="movies-container">
@@ -41,6 +43,7 @@
             <p class="empty-list">Não há filmes cadastrados</p>
         <?php endif; ?>
     </div>
+    
 </div>
 <?php
     include_once("templates/footer.php");

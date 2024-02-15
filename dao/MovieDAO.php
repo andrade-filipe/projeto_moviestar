@@ -80,8 +80,7 @@ class MovieDAO implements MovieDAOInterface
         return $movies;
     }
 
-    public function getMoviesByUserId($id)
-    {
+    public function getMoviesByUserId($id){
         $movies = [];
 
         $stmt = $this->connection->prepare("SELECT * FROM movies WHERE users_id = :users_id");
@@ -120,8 +119,24 @@ class MovieDAO implements MovieDAOInterface
         }
     }
 
-    public function findByTitle($title)
-    {
+    public function findByTitle($title){
+        $movies = [];
+
+        $stmt = $this->connection->prepare("SELECT * FROM movies WHERE title LIKE :title");
+
+        $stmt->bindValue(":title", '%' . $title . '%');
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $moviesArray = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($moviesArray as $movie) {
+                $movies[] = $this->buildMovie($movie);
+            }
+        }
+
+        return $movies;
     }
 
     public function create(Movie $movie)
