@@ -153,7 +153,7 @@
         }
 
         public function findById($id){
-
+            
         }
 
         public function findByToken($token){
