@@ -2,12 +2,14 @@
 include_once("templates/header.php");
 include_once("models/Movie.php");
 include_once("dao/MovieDAO.php");
+include_once("dao/ReviewDAO.php");
 
 $id = filter_input(INPUT_GET, "id");
 
 $movie;
 
 $movieDao = new MovieDAO($connection);
+$reviewDao = new ReviewDAO($connection);
 
 if (empty($id)) {
     $message->setMessage("O Filme Não foi Encontrado", "error");
@@ -29,6 +31,8 @@ if (!empty($userData)) {
 if($movie -> image == ""){
     $movie->image = "movie_cover.jpg";
 }
+
+$movieReviews = $reviewDao -> getMoviesReview($id);
 
 $alreadyReviewed = false;
 
@@ -82,21 +86,15 @@ $alreadyReviewed = false;
                 </form>
             </div>
             <?php endif; ?>
-            <div class="col-md-12 review">
-                <div class="row">
-                    <div class="col-md-1">
-                        <div class="profile-image-container review-image" style="background-image: url('/img/users/user.png')"></div>
-                    </div>
-                    <div class="col-md-9 author-details-container">
-                        <h4 class="author-name"><a href="#">Mateus Teste</a></h4>
-                        <p><i class="fas fa-star"></i>9</p>
-                    </div>
-                    <div class="col-md-12">
-                        <p class="comment-title">Comentário</p>
-                        <p>Comentário do Usuário</p>
-                    </div>
-                </div>
-            </div>
+
+            <?php foreach($movieReviews as $review): ?>
+                <?php require("templates/user_review.php"); ?>
+            <?php endforeach; ?>
+
+            <?php if(count($movieReviews) == 0): ?>
+                <p class="empty-list">Não Há Comentários</p>
+            <?php endif; ?>
+            
         </div>
     </div>
 </div>

@@ -17,7 +17,7 @@
 
     $userData = $userDao -> verifyToken();
 
-    if($type === "create"){
+    if($type === "review"){
         $rating = filter_input(INPUT_POST,"rating");
         $review = filter_input(INPUT_POST,"review");
         $movies_id = filter_input(INPUT_POST,"movies_id");
